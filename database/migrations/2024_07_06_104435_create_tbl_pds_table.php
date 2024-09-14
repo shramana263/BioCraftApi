@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string('gender');
-            $table->integer('contact_no');
-            $table->date('DOB');
+            $table->string('contact_no');
+            $table->string('DOB');
             $table->string('nationality');
             $table->timestamps();
         });
