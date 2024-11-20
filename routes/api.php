@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PdController;
+use App\Http\Controllers\PersonalDetailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,5 @@ Route::post('/login',[AuthController::class,'login']);
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/user',[AuthController::class,'user']);
     Route::post('/logout',[AuthController::class,'logout']);
-    Route::post('/store/personaldetails',[PdController::class,'store']);
+    Route::post('/store/personaldetails',[PersonalDetailController::class,'store']);
 });

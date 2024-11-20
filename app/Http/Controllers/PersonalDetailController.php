@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PdRequest;
-use App\Models\tbl_pd;
+use App\Models\PersonalDetail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class PdController extends Controller
+class PersonalDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,28 +32,41 @@ class PdController extends Controller
         ];
         // $data=$request;
 
-        // $pd= new tbl_pd();
-        // $pd->fname= $data['fname'];
-        // dd("personal"+$pd);
-        
+        $pd= new PersonalDetail();
+        $pd->fname= $data['fname'];
+        $pd->lname= $data['lname'];
+        $pd->gender= $data['gender'];
+        $pd->address= $data['address'];
+        $pd->contact_no= $data['contact_no'];
+        $pd->dob= $data['dob'];
+        $pd->user_id= $data['user_id'];
 
-        // dd($request);
-        dd($data);
+        $pd->save();
         
+        // dd($request);
+        // dd($data);
+
+        return response()->json([
+            $pd
+        ],201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(PersonalDetail $personalDetail)
     {
         //
+
+        if (true):
+            dd();
+        endif;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, PersonalDetail $personalDetail)
     {
         //
     }
@@ -62,7 +74,7 @@ class PdController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(PersonalDetail $personalDetail)
     {
         //
     }

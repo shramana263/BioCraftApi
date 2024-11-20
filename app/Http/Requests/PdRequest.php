@@ -27,8 +27,7 @@ class PdRequest extends FormRequest
             'gender'=>'required',
             'address'=>'required',
             'contact_no'=>'required',
-            'dob'=>'required',
-            'country'=>'required',
+            'dob'=>'required'
         ];
     }
 }
