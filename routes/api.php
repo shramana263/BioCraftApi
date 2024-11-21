@@ -5,6 +5,7 @@ use App\Http\Controllers\EducationalDetailController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PdController;
 use App\Http\Controllers\PersonalDetailController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SpecializationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/store/educationaldetails',[EducationalDetailController::class,'store']);
     Route::post('/store/specialization',[SpecializationController::class,'store']);
     Route::post('/store/experience',[ExperienceController::class,'store']);
+    Route::post('/store/skill',[SkillController::class,'store']);
 });
