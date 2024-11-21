@@ -13,7 +13,11 @@ class SkillController extends Controller
      */
     public function index()
     {
-        //
+        $data= Skill::where('user_id',auth()->id())->get();
+
+        return response()->json([
+            'data'=>$data
+        ]);
     }
 
     /**
@@ -26,7 +30,7 @@ class SkillController extends Controller
         $data->user_id=auth()->id();
         $data->save();
 
-        $progress= Progress::findOrFail(auth()->id());
+        $progress= Progress::where('user_id',auth()->id())->first();
         if($progress->step==4):
             $progress->step=5;
             $progress->save();
@@ -49,9 +53,23 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Skill $skill)
+    public function update(Request $request, Skill $skill, $id)
     {
-        //
+        $data = Skill::findOrFail($id);
+
+        if($data->user_id==auth()->id()):
+            $data->skill= $request->skill;
+            $data->save();
+
+            return response()->json([
+                'data'=>$data,
+                'message'=>"Data updated successfully"
+            ]);
+        else:
+            return response()->json([
+                "message"=>"You are not authorized to edit this data"
+            ],400);
+        endif;
     }
 
     /**
