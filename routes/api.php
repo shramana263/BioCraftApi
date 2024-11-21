@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EducationalDetailController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PdController;
 use App\Http\Controllers\PersonalDetailController;
+use App\Http\Controllers\SpecializationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/user',[AuthController::class,'user']);
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/store/personaldetails',[PersonalDetailController::class,'store']);
+    Route::post('/store/educationaldetails',[EducationalDetailController::class,'store']);
+    Route::post('/store/specialization',[SpecializationController::class,'store']);
+    Route::post('/store/experience',[ExperienceController::class,'store']);
 });
