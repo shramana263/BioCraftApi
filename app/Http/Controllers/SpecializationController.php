@@ -13,7 +13,11 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        //
+        $data = Specialization::where('user_id', auth()->id())->get();
+
+        return response()->json([
+            'data'=>$data
+        ]);
     }
 
     /**
@@ -27,7 +31,7 @@ class SpecializationController extends Controller
         $data->user_id= auth()->id();
 
         $data->save();
-        $progress=Progress::findOrFail(auth()->id());
+        $progress=Progress::where('user_id',auth()->id())->first();
         if($progress->step==2):
             $progress->step=3;
             $progress->save();
@@ -50,9 +54,22 @@ class SpecializationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Specialization $specialization)
+    public function update(Request $request, Specialization $specialization,$id)
     {
-        //
+        $data = Specialization::findOrFail($id);
+        if($data->user_id== auth()->id()):
+            $data->certificate= $request->certificate;
+            $data->organisation= $request->organisation;
+            $data->save();
+            return response()->json([
+                'data'=>$data,
+                'message'=>"Data updated successfully"
+            ]);
+        else:
+            return response()->json([
+                "message"=>'You are not authorized to edit this data'
+            ],400);
+        endif;
     }
 
     /**
