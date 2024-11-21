@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PdRequest;
 use App\Models\PersonalDetail;
+use App\Models\Progress;
 use Illuminate\Http\Request;
 
 class PersonalDetailController extends Controller
@@ -42,12 +43,17 @@ class PersonalDetailController extends Controller
         $pd->user_id= $data['user_id'];
 
         $pd->save();
-        
+        $progress= new Progress();
+        $progress->step= 1;
+        $progress->user_id= $data['user_id'];
+        $progress->save();
+
         // dd($request);
         // dd($data);
 
         return response()->json([
-            $pd
+            'personal-details'=>$pd,
+            'step'=>$progress->step
         ],201);
     }
 
