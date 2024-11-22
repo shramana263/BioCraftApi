@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistrationRequest;
+use App\Models\Progress;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,8 @@ class AuthController extends Controller
             "message" => "Successful login"
         ], 201);
     }
-
+    
+    
     public function registration(RegistrationRequest $request)
     {
 
@@ -55,6 +57,12 @@ class AuthController extends Controller
         $user->save();
 
         $token = $user->createToken("MyToken")->plainTextToken;
+            $progress = new Progress();
+            $progress->step=0;
+            $progress->user_id= $user->id;
+            $progress->save();
+        
+
         return response()->json([
             "status" => true,
             "token" => $token,
@@ -72,4 +80,5 @@ class AuthController extends Controller
 
         return response(['message' => 'Successfully logged out'],201);
     }
+
 }

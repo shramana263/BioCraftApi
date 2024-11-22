@@ -12,7 +12,11 @@ class ProgressController extends Controller
      */
     public function index()
     {
-        //
+        $progress= Progress::where('user_id', auth()->id())->first();
+    
+        return response()->json(
+             $progress,
+        );
     }
 
     /**

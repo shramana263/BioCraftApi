@@ -44,10 +44,12 @@ class PersonalDetailController extends Controller
         $pd->user_id = $data['user_id'];
 
         $pd->save();
-        $progress = new Progress();
-        $progress->step = 1;
-        $progress->user_id = $data['user_id'];
-        $progress->save();
+        
+        $progress= Progress::where('user_id', auth()->id())->first();
+        if($progress->step==0):
+            $progress->step=1;
+            $progress->save();
+        endif;
 
         // dd($request);
         // dd($data);
