@@ -13,7 +13,7 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        $data = Experience::where('user_id',auth()->id())->first();
+        $data = Experience::where('user_id',auth()->id())->get();
 
         return response()->json([
             'data'=>$data

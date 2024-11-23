@@ -5,6 +5,7 @@ use App\Http\Controllers\EducationalDetailController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PdController;
 use App\Http\Controllers\PersonalDetailController;
+use App\Http\Controllers\ProfileImageController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SpecializationController;
@@ -50,4 +51,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::put('/update/skill/{id}',[SkillController::class,'update']);
 
     Route::get('/index/progress',[ProgressController::class,'index']);
+
+    Route::post('/store/profile-image',[ProfileImageController::class,'store']);
 });

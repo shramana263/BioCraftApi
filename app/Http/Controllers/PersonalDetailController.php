@@ -15,7 +15,11 @@ class PersonalDetailController extends Controller
      */
     public function index()
     {
-        //
+        $data= PersonalDetail::findOrFail(auth()->id())->get();
+
+        return response()->json([
+            'data'=>$data
+        ]);
     }
 
     /**
@@ -65,8 +69,7 @@ class PersonalDetailController extends Controller
      */
     public function show()
     {
-        $userId = auth()->id();
-        $pd = PersonalDetail::where('user_id', $userId)->get();
+        $pd = PersonalDetail::where('user_id',auth()->id())->get();
         //dd($pd);
 
         return response()->json([
