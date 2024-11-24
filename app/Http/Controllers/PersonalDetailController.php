@@ -17,9 +17,19 @@ class PersonalDetailController extends Controller
     {
         $data= PersonalDetail::findOrFail(auth()->id())->get();
 
-        return response()->json([
-            'data'=>$data
-        ]);
+        if($data){
+
+            return response()->json([
+                'data'=>$data,
+                'status'=>true
+            ],200);
+        }
+        else{
+            return response()->json([
+                'message'=>'No data found',
+                'status'=>false
+            ],204);
+        }
     }
 
     /**
@@ -69,12 +79,22 @@ class PersonalDetailController extends Controller
      */
     public function show()
     {
-        $pd = PersonalDetail::where('user_id',auth()->id())->get();
+        $data = PersonalDetail::where('user_id',auth()->id())->get();
         //dd($pd);
 
-        return response()->json([
-            'data' => $pd
-        ]);
+        if($data){
+
+            return response()->json([
+                'data'=>$data,
+                'status'=>true
+            ],200);
+        }
+        else{
+            return response()->json([
+                'message'=>'No data found',
+                'status'=>false
+            ],204);
+        }
     }
 
     /**

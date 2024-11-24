@@ -15,9 +15,20 @@ class EducationalDetailController extends Controller
     {
         $data= EducationalDetail::where('user_id',auth()->id())->get();
 
-        return response()->json([
-            'data'=>$data
-        ]);
+        if($data){
+
+            return response()->json([
+                'data'=>$data,
+                'status'=>true
+            ],200);
+        }
+        else{
+            return response()->json([
+                'message'=>'No data found',
+                'status'=>false
+            ],204);
+        }
+
     }
 
     /**

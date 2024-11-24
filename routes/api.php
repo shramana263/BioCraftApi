@@ -53,4 +53,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/index/progress',[ProgressController::class,'index']);
 
     Route::post('/store/profile-image',[ProfileImageController::class,'store']);
+    Route::get('/show/profile-image',[ProfileImageController::class,'show']);
 });
