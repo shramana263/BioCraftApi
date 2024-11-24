@@ -21,20 +21,32 @@ class ProfileImageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $image = $request->file('image');
-        $filename = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $filename);
+       if($request->has('image')){
+        $file= $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $fileName= time().'.'.$extension;
 
-        $imageModel = ProfileImage::create(['filename' => $filename,'user_id'=>auth()->id()]);
+        $path='uploads/profile-images/';
+        $file->move($path,$fileName);
+
+        // ProfileImage::create([
+        //     'filename'=>$filename,
+        //     'user_id'=>auth()->id()
+        // ]);
+        $data= new ProfileImage();
+        $data->filename= $path.$fileName;
+        $data->user_id= auth()->id();
+
+        $data->save();
 
         return response()->json([
-            'success' => true,
-            'data' => $imageModel,
-            'message' => 'Image uploaded successfully.'
+            'data'=>$data,
+            'status'=>true
         ]);
+       }
     }
 
     /**
@@ -42,7 +54,22 @@ class ProfileImageController extends Controller
      */
     public function show(ProfileImage $profileImage)
     {
-        //
+        $data= ProfileImage::where('user_id',auth()->id())->first();
+        if($data){
+
+            $imageUrl= 'http://biodatamakerapi.local/'.$data->filename;
+            return response()->json([
+                'url'=>$imageUrl,
+                'status'=>true
+            ],200);
+        }
+        else{
+                return response()->json([
+                    'url'=>'http://biodatamakerapi.local/assets/dummy-profile-img.jpg',
+                    'status'=>false
+                ],204);
+        }
+
     }
 
     /**
