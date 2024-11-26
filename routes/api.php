@@ -54,4 +54,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::post('/store/profile-image',[ProfileImageController::class,'store']);
     Route::get('/show/profile-image',[ProfileImageController::class,'show']);
+    Route::get('/index/profile-image',[ProfileImageController::class,'index']);
+    Route::put('/update/profile-image/{id}',[ProfileImageController::class,'update']);
 });

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('filename');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('active_status');
         });
     }
 
