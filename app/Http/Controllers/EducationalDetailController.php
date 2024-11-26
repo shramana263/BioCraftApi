@@ -26,7 +26,7 @@ class EducationalDetailController extends Controller
             return response()->json([
                 'message'=>'No data found',
                 'status'=>false
-            ],204);
+            ]);
         }
 
     }
