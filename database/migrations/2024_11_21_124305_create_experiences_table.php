@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('ending_date');
             $table->string('role');
             $table->string('organisation');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });

@@ -24,7 +24,11 @@ class ProfileImageController extends Controller
             //     $imageUrl= 'http://biodatamakerapi.local/'.$image->filename;
             // }
             $imageUrls = $images->map(function ($image) {
-                return 'http://biodatamakerapi.local/' . $image->filename;
+                return [
+                    'url' => 'http://biodatamakerapi.local/' . $image->filename,
+                    'id' => $image->id,
+                ];
+            
             })->toArray();
 
             return response()->json([
