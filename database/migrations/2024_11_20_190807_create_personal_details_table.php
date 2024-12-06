@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('contact_no');
             $table->string('DOB');
             $table->string('address');
+            $table->string('nationality');
+            $table->string('marital_status');
             $table->timestamps();
         });
     }
