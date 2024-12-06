@@ -8,6 +8,7 @@ use App\Http\Controllers\PersonalDetailController;
 use App\Http\Controllers\ProfileImageController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\SocialNetworkController;
 use App\Http\Controllers\SpecializationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -60,4 +61,8 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/show/profile-image',[ProfileImageController::class,'show']);
     Route::get('/index/profile-image',[ProfileImageController::class,'index']);
     Route::put('/update/profile-image/{id}',[ProfileImageController::class,'update']);
+
+
+    Route::post('/store/social-network',[SocialNetworkController::class,'store']);
+    Route::get('/index/social-network',[SocialNetworkController::class,'index']);
 });

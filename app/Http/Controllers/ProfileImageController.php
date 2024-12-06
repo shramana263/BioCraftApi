@@ -106,14 +106,8 @@ class ProfileImageController extends Controller
             'active_status' => 'required',
             // Add more validation rules as needed
         ]);
-
-        // Find the model instance to update
-        // $model = ProfileImage::find($id);
         ProfileImage::where('id', $id)->update($request->all());
-        // Update the model instance
-        // $model->update($validatedData);
-        // $model->save();
-
+       
         // Return a success response
         return response()->json(['message' => 'Data updated successfully'], 200);
     }
