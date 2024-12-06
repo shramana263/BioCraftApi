@@ -59,9 +59,20 @@ class ExperienceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Experience $experience)
+    public function show(Experience $experience, $id)
     {
-        //
+        $data = Experience::findOrFail($id);
+        if($data){
+            return response()->json([
+                'data'=>$data,
+                'message'=>'data fetched successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                "message"=>'Error in data fetching'
+            ]);
+        }
     }
 
     /**

@@ -55,9 +55,20 @@ class SkillController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Skill $skill)
+    public function show(Skill $skill, $id)
     {
-        //
+        $data = Skill:: findOrFail($id);
+        if($data){
+            return response()->json([
+                'data'=>$data,
+                'message'=>'data fetched successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                "message"=>'Error in data fetching'
+            ]);
+        }
     }
 
     /**

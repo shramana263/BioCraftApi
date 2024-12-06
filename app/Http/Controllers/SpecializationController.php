@@ -56,9 +56,20 @@ class SpecializationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Specialization $specialization)
+    public function show(Specialization $specialization, $id)
     {
-        //
+        $data = Specialization::findOrFail($id);
+        if($data){
+            return response()->json([
+                'data'=>$data,
+                'message'=>'data fetched successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                "message"=>'Error in data fetching'
+            ]);
+        }
     }
 
     /**

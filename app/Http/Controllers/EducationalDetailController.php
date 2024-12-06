@@ -62,9 +62,20 @@ class EducationalDetailController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EducationalDetail $educationalDetail)
+    public function show(EducationalDetail $educationalDetail, $id)
     {
-        //
+        $data = EducationalDetail::findOrFail($id);
+        if($data){
+            return response()->json([
+                'data'=>$data,
+                'message'=>'data fetched successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                "message"=>'Error in data fetching'
+            ]);
+        }
     }
 
     /**

@@ -37,18 +37,22 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/index/educationaldetails',[EducationalDetailController::class,'index']);
     Route::post('/store/educationaldetails',[EducationalDetailController::class,'store']);
     Route::put('/update/educationaldetails/{id}',[EducationalDetailController::class,'update']);
+    Route::get('/show/educationaldetails/{id}',[EducationalDetailController::class,'show']);
 
     Route::get('/index/specialization',[SpecializationController::class,'index']);
     Route::post('/store/specialization',[SpecializationController::class,'store']);
     Route::put('/update/specialization/{id}',[SpecializationController::class,'update']);
+    Route::get('/show/specialization/{id}',[SpecializationController::class,'show']);
 
     Route::get('/index/experience',[ExperienceController::class,'index']);
     Route::post('/store/experience',[ExperienceController::class,'store']);
     Route::put('/update/experience/{id}',[ExperienceController::class,'update']);
+    Route::get('/show/experience/{id}',[ExperienceController::class,'show']);
 
     Route::get('/index/skill',[SkillController::class,'index']);
     Route::post('/store/skill',[SkillController::class,'store']);
     Route::put('/update/skill/{id}',[SkillController::class,'update']);
+    Route::get('/show/skill/{id}',[SkillController::class,'show']);
 
     Route::get('/index/progress',[ProgressController::class,'index']);
 
