@@ -65,17 +65,43 @@ class SocialNetworkController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SocialNetwork $socialNetwork)
+    public function show(SocialNetwork $socialNetwork,$id)
     {
-        //
+        $data = SocialNetwork:: findOrFail($id);
+        if($data){
+            return response()->json([
+                'data'=>$data,
+                'message'=>'data fetched successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                "message"=>'Error in data fetching'
+            ]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SocialNetwork $socialNetwork)
+    public function update(Request $request, SocialNetwork $socialNetwork, $id)
     {
-        //
+        $data = SocialNetwork::findOrFail($id);
+
+        if($data->user_id==auth()->id()):
+            $data->name= $request->name;
+            $data->link=$request->link;
+            $data->save();
+
+            return response()->json([
+                'data'=>$data,
+                'message'=>"Data updated successfully"
+            ]);
+        else:
+            return response()->json([
+                "message"=>"You are not authorized to edit this data"
+            ],400);
+        endif;
     }
 
     /**

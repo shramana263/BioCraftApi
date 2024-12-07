@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Progress;
+use App\Models\SocialNetwork;
 use Illuminate\Http\Request;
 
 class ProgressController extends Controller
@@ -40,7 +41,14 @@ class ProgressController extends Controller
      */
     public function update(Request $request, Progress $progress)
     {
-        //
+        $data= Progress::where('user_id',auth()->id())->first();
+        $data->step=$request->step;
+        $data->save();
+
+        return response()->json([
+            'data'=>$data,
+            'message'=>'Progress Updated Successfully'
+        ]);
     }
 
     /**

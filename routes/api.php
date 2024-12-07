@@ -56,6 +56,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/show/skill/{id}',[SkillController::class,'show']);
 
     Route::get('/index/progress',[ProgressController::class,'index']);
+    Route::put('/update/progress',[ProgressController::class,'update']);
 
     Route::post('/store/profile-image',[ProfileImageController::class,'store']);
     Route::get('/show/profile-image',[ProfileImageController::class,'show']);
@@ -65,4 +66,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::post('/store/social-network',[SocialNetworkController::class,'store']);
     Route::get('/index/social-network',[SocialNetworkController::class,'index']);
+    Route::put('/update/social-network/{id}',[SocialNetworkController::class,'update']);
+    Route::get('/show/social-network/{id}',[SocialNetworkController::class,'show']);
 });
