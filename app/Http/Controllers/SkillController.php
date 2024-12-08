@@ -96,8 +96,20 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Skill $skill)
+    public function destroy(Skill $skill, $id)
     {
-        //
+        $data = Skill::findOrFail($id);
+
+        if($data){
+            $data->delete();
+            return response()->json([
+                'message'=>'Data deleted successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message'=>'Error in deleting the data'
+            ]);
+        }
     }
 }

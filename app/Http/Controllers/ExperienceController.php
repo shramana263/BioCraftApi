@@ -104,8 +104,20 @@ class ExperienceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Experience $experience)
+    public function destroy(Experience $experience, $id)
     {
-        //
+        $data = Experience::findOrFail($id);
+
+        if($data){
+            $data->delete();
+            return response()->json([
+                'message'=>'Data deleted successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message'=>'Error in deleting the data'
+            ]);
+        }
     }
 }

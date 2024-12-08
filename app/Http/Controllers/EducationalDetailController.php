@@ -109,8 +109,20 @@ class EducationalDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EducationalDetail $educationalDetail)
+    public function destroy(EducationalDetail $educationalDetail, $id)
     {
-        //
+        $data = EducationalDetail::findOrFail($id);
+
+        if($data){
+            $data->delete();
+            return response()->json([
+                'message'=>'Data deleted successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message'=>'Error in deleting the data'
+            ]);
+        }
     }
 }

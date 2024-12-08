@@ -39,21 +39,25 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/store/educationaldetails',[EducationalDetailController::class,'store']);
     Route::put('/update/educationaldetails/{id}',[EducationalDetailController::class,'update']);
     Route::get('/show/educationaldetails/{id}',[EducationalDetailController::class,'show']);
+    Route::delete('/delete/educationaldetails/{id}',[EducationalDetailController::class,'destroy']);
 
     Route::get('/index/specialization',[SpecializationController::class,'index']);
     Route::post('/store/specialization',[SpecializationController::class,'store']);
     Route::put('/update/specialization/{id}',[SpecializationController::class,'update']);
     Route::get('/show/specialization/{id}',[SpecializationController::class,'show']);
+    Route::delete('/delete/specialization/{id}',[SpecializationController::class,'destroy']);
 
     Route::get('/index/experience',[ExperienceController::class,'index']);
     Route::post('/store/experience',[ExperienceController::class,'store']);
     Route::put('/update/experience/{id}',[ExperienceController::class,'update']);
     Route::get('/show/experience/{id}',[ExperienceController::class,'show']);
+    Route::delete('/delete/experience/{id}',[ExperienceController::class,'destroy']);
 
     Route::get('/index/skill',[SkillController::class,'index']);
     Route::post('/store/skill',[SkillController::class,'store']);
     Route::put('/update/skill/{id}',[SkillController::class,'update']);
     Route::get('/show/skill/{id}',[SkillController::class,'show']);
+    Route::delete('/delete/skill/{id}',[SkillController::class,'destroy']);
 
     Route::get('/index/progress',[ProgressController::class,'index']);
     Route::put('/update/progress',[ProgressController::class,'update']);
@@ -68,4 +72,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/index/social-network',[SocialNetworkController::class,'index']);
     Route::put('/update/social-network/{id}',[SocialNetworkController::class,'update']);
     Route::get('/show/social-network/{id}',[SocialNetworkController::class,'show']);
+    Route::delete('/delete/social-network/{id}',[SocialNetworkController::class,'destroy']);
 });

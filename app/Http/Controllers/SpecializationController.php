@@ -96,8 +96,20 @@ class SpecializationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Specialization $specialization)
+    public function destroy(Specialization $specialization, $id)
     {
-        //
+        $data = Specialization::findOrFail($id);
+
+        if($data){
+            $data->delete();
+            return response()->json([
+                'message'=>'Data deleted successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message'=>'Error in deleting the data'
+            ]);
+        }
     }
 }
