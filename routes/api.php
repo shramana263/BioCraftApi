@@ -7,6 +7,7 @@ use App\Http\Controllers\PdController;
 use App\Http\Controllers\PersonalDetailController;
 use App\Http\Controllers\ProfileImageController;
 use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SocialNetworkController;
 use App\Http\Controllers\SpecializationController;
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/registration',[AuthController::class,'registration']);
 Route::post('/login',[AuthController::class,'login']);
+Route::get('/index/review',[ReviewController::class,'index']);
 
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/user',[AuthController::class,'user']);
@@ -73,4 +75,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::put('/update/social-network/{id}',[SocialNetworkController::class,'update']);
     Route::get('/show/social-network/{id}',[SocialNetworkController::class,'show']);
     Route::delete('/delete/social-network/{id}',[SocialNetworkController::class,'destroy']);
+
+    Route::post('/store/review', [ReviewController::class,'store']);
+    Route::delete('/delete/review/{id}',[ReviewController::class,'store']);
 });
