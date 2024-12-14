@@ -16,6 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name')->nullable();
             $table->string('review')->nullable();
+            $table->string('is_reply')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });

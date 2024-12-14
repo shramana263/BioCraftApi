@@ -12,7 +12,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $data= Review::all();
+        $data= Review::where('parent_id',0)->get();
         if($data){
             return response()->json([
                 'data'=>$data,
@@ -34,7 +34,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $data= new Review();
+        $data= new Review();      
         if($request->name==null){
             $data->name='anonymous';
         }
@@ -43,6 +43,8 @@ class ReviewController extends Controller
         }
         $data->review= $request->review;
         $data->user_id= auth()->id();
+        $data->is_reply= $request->is_reply??0;
+        $data->parent_id= $request->parent_id?? 0;
 
         $data->save();
 

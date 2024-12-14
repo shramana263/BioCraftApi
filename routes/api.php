@@ -7,10 +7,12 @@ use App\Http\Controllers\PdController;
 use App\Http\Controllers\PersonalDetailController;
 use App\Http\Controllers\ProfileImageController;
 use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\ReplyReviewController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SocialNetworkController;
 use App\Http\Controllers\SpecializationController;
+use App\Models\ReplyReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -78,4 +80,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::post('/store/review', [ReviewController::class,'store']);
     Route::delete('/delete/review/{id}',[ReviewController::class,'store']);
+
 });
