@@ -13,6 +13,12 @@ class AdminController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->role !== 'admin'){
+            return response()->json([
+                'message'=>'Unauthorized',
+                'status'=>false
+            ],401);
+        }
         $users= User::all();
         if(!$users){
             return response()->json([
@@ -39,7 +45,17 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+        if(auth()->user()->role !== 'admin'){
+            return response()->json([
+                'message'=>'Unauthorized',
+                'status'=>false
+            ],401);
+        }
+        $user= User::findOrFail($id);
+        return response()->json([
+            'data'=>$user,
+            'status'=>true
+        ],200);
     }
 
     /**
